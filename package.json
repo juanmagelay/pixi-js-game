@@ -1,0 +1,26 @@
+{
+  "name": "pixi-js-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanmagelay/pixi-js-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanmagelay/pixi-js-game/issues"
+  },
+  "homepage": "https://github.com/juanmagelay/pixi-js-game#readme",
+  "dependencies": {
+    "pixi.js": "^8.14.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.9"
+  }
+}
