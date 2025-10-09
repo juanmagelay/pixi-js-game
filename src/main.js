@@ -1,4 +1,4 @@
-import { Application, Graphics } from 'pixi.js';
+import { Application, Graphics, Text, TextStyle } from 'pixi.js';
 
 ( async () => {
     const app = new Application();
@@ -12,6 +12,40 @@ import { Application, Graphics } from 'pixi.js';
     
     // Delete the margin around the canvas
     app.canvas.style.position = 'absolute';
+
+    // Create a text style
+    const style = new TextStyle({
+        fill: 0xff0033,
+        fontFamily: "VT323",
+        fontSize: 24,
+        fontStyle: 'normal',
+        fontWeight: 400,
+        stroke: { color: '#4a1850', width: 5 },
+        dropShadow: {
+            color: '#4a1850',
+            blur: 4,
+            angle: Math.PI / 6,
+            distance: 6
+        },
+        wordWrap: true,
+        wordWrapWidth: 20
+    });
+
+    // Create a text 1
+    const text1 = new Text({
+        text: 'Hola soy Juan',
+        style,
+        position: { x: 200, y: 20 }
+    });
+    app.stage.addChild( text1 );
+
+    // Create a text 2
+    const text2 = new Text({
+        text: 'y mi apellido es Gelay',
+        style,
+        position: { x: 280, y: 20 }
+    });
+    app.stage.addChild( text2 );
 
     // Create a rectangle
     const rectangle = new Graphics();
