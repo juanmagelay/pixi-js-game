@@ -7,6 +7,8 @@ import {
     Assets 
 } from 'pixi.js';
 
+import { initDevtools } from '@pixi/devtools';
+
 ( async () => {
     const app = new Application();
     await app.init({
@@ -16,6 +18,9 @@ import {
         backgroundAlpha: 0.4,
         backgroundColor: 0xffea00
     });
+
+    // Initialize devtools
+    initDevtools( { app } );
     
     // Delete the margin around the canvas
     app.canvas.style.position = 'absolute';
