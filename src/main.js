@@ -118,6 +118,14 @@ import {
     app.stage.addChild(sprite1, sprite2);
     sprite1.position.set( 400, 300 );
     sprite2.position.set( 600, 300 );
+    sprite1.width = 100;
+    sprite1.height = 200;
+    sprite2.scale.x = 2;
+    sprite2.scale.y = 2;
+    sprite1.skew.set( Math.PI/4, 0 ); // 45 degrees skew on x axis
+    sprite2.rotation = Math.PI / 4; // 45 degrees rotation
+    sprite2.anchor.set( 0.5, 0.5 ); // Set the anchor point to the center   
+
 
     // Create a line
     const line = new Graphics();
