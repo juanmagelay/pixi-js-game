@@ -4,7 +4,8 @@ import {
     Text, 
     TextStyle, 
     Sprite, 
-    Assets 
+    Assets,
+    Container 
 } from 'pixi.js';
 
 import { initDevtools } from '@pixi/devtools';
@@ -155,18 +156,11 @@ import { initDevtools } from '@pixi/devtools';
     // Load an image and create a sprite
     const texture = await Assets.load('/public/images/Renegade_Kick_1.png');
     const sprite1 = Sprite.from(texture);
-    const sprite2 = new Sprite (texture);
-    app.stage.addChild(sprite1, sprite2);
+    app.stage.addChild(sprite1);
     sprite1.position.set( 400, 300 );
-    sprite2.position.set( 600, 300 );
     sprite1.width = 100;
     sprite1.height = 200;
-    sprite2.scale.x = 2;
-    sprite2.scale.y = 2;
     sprite1.skew.set( Math.PI/4, 0 ); // 45 degrees skew on x axis
-    sprite2.rotation = Math.PI / 4; // 45 degrees rotation
-    sprite2.anchor.set( 0.5, 0.5 ); // Set the anchor point to the center   
-
 
     // Create a line
     const line = new Graphics();
@@ -180,4 +174,29 @@ import { initDevtools } from '@pixi/devtools';
     app.stage.addChild( line );
 
     document.body.appendChild(app.canvas);
+
+    const fightersContainer = new Container();
+    app.stage.addChild(fightersContainer);
+
+    
+    // Position the container
+    fightersContainer.position.set( app.screen.width / 2, app.screen.height / 2 );
+
+    // Sprite 2 into the container
+    const sprite2 = new Sprite (texture);
+    
+    sprite2.scale.x = 3;
+    sprite2.scale.y = 3;
+    sprite2.rotation = Math.PI / 4; // 45 degrees rotation
+    sprite2.anchor.set( 0.5, 0.5 ); // Set the anchor point to the center   
+
+    fightersContainer.addChild(sprite2);
+
+    const inContainerX = sprite2.x;
+    const inContainerY = sprite2.y;
+    const globalX = sprite2.getGlobalPosition().x;
+    const globalY = sprite2.getGlobalPosition().y;
+
+    // Log the positions of sprite 2
+    console.log( { inContainerX, inContainerY, globalX, globalY } );
 } )();
