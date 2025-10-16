@@ -89,18 +89,44 @@ import { initDevtools } from '@pixi/devtools';
 
     // Create a triangle
     const triangle = new Graphics()
-    triangle.poly([
-        600, 50,
-        720, 400,
-        420, 400
-    ]);
-    triangle.fill({
-        color: 0x8f5ff2
+
+    // Tick to animate the triangle
+    app.ticker.add( () => {
+        
+        // Clear previous drawing
+        triangle.clear();
+
+        // Generate three random points (x,y) for the triangle
+        const screenWidthDividedBy3 = app.screen.width / 3;
+        const screenHeightDividedBy3 = app.screen.height / 3;
+        
+        const x1 = Math.random() * screenWidthDividedBy3;
+        const y1 = Math.random() * screenHeightDividedBy3;
+        const x2 = Math.random() * screenWidthDividedBy3;
+        const y2 = Math.random() * screenHeightDividedBy3;
+        const x3 = Math.random() * screenWidthDividedBy3;
+        const y3 = Math.random() * screenHeightDividedBy3;
+
+        // Draw triangle path
+        triangle.poly([
+            x1, y1,
+            x2, y2,
+            x3, y3
+        ]);
+
+        triangle.fill({
+            color: 0x000000
+        });
+
+        triangle.stroke({
+            color: 0xf5fa2f
+        });
+
+        app.stage.addChild(triangle);
     });
-    triangle.stroke({
-        color: 0xf5fa2f
-    });
-    app.stage.addChild(triangle);
+
+    // Ticker max FPS
+    app.ticker.maxFPS = 20;
 
     // Create a circle
     const circle = new Graphics();
@@ -116,7 +142,7 @@ import { initDevtools } from '@pixi/devtools';
     })
     app.stage.addChild( circle );
 
-    // Move the circle
+    // Move the circle with click
 
     circle.eventMode = 'static';
     circle.cursor = 'pointer';
