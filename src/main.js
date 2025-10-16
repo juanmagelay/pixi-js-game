@@ -116,6 +116,16 @@ import { initDevtools } from '@pixi/devtools';
     })
     app.stage.addChild( circle );
 
+    // Move the circle
+
+    circle.eventMode = 'static';
+    circle.cursor = 'pointer';
+    circle.on('pointerdown', moveLeft);
+
+    function moveLeft() {
+        circle.x -= 10;
+    }
+    
     // Load an image and create a sprite
     const texture = await Assets.load('/public/images/Renegade_Kick_1.png');
     const sprite1 = Sprite.from(texture);
