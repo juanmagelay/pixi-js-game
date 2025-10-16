@@ -1,4 +1,11 @@
-import { Application, Graphics, Text, TextStyle } from 'pixi.js';
+import { 
+    Application, 
+    Graphics, 
+    Text, 
+    TextStyle, 
+    Sprite, 
+    Assets 
+} from 'pixi.js';
 
 ( async () => {
     const app = new Application();
@@ -103,6 +110,14 @@ import { Application, Graphics, Text, TextStyle } from 'pixi.js';
         width: 5
     })
     app.stage.addChild( circle );
+
+    // Load an image and create a sprite
+    const texture = await Assets.load('/public/images/Renegade_Kick_1.png');
+    const sprite1 = Sprite.from(texture);
+    const sprite2 = new Sprite (texture);
+    app.stage.addChild(sprite1, sprite2);
+    sprite1.position.set( 400, 300 );
+    sprite2.position.set( 600, 300 );
 
     // Create a line
     const line = new Graphics();
