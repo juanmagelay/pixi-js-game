@@ -27,7 +27,7 @@ import { initDevtools } from '@pixi/devtools';
     app.canvas.style.position = 'absolute';
 
     // Create a text style
-    const style = new TextStyle({
+    const styleDefault = new TextStyle({
         fill: 0xff0033,
         fontFamily: "VT323",
         fontSize: 24,
@@ -44,20 +44,26 @@ import { initDevtools } from '@pixi/devtools';
         wordWrapWidth: 20
     });
 
-    // Create a text 1
-    const text1 = new Text({
-        text: 'Hola soy Juan',
-        style,
-        position: { x: 200, y: 20 }
+    //const font = await Assets.load('/fonts/Korean_Calligraphy.ttf');
+    const fontFace = new FontFace('KoreanCalligraphy', 'url(/fonts/Korean_Calligraphy.ttf)');
+    await fontFace.load();
+    document.fonts.add(fontFace);
+    await document.fonts.ready; // opcional: esperar que esté lista
+
+    console.log('font ready?', document.fonts.check("1em 'KoreanCalligraphy'"));
+
+    const styleKorean = new TextStyle({
+        fontFamily: 'KoreanCalligraphy'
     });
+    
+    // Create a text 1
+    const text1 = new Text('y mi apellido es Gelay', styleDefault);
+    text1.position.set(500, 20);
     app.stage.addChild( text1 );
 
     // Create a text 2
-    const text2 = new Text({
-        text: 'y mi apellido es Gelay',
-        style,
-        position: { x: 280, y: 20 }
-    });
+    const text2 = new Text('y mi apellido es Gelay', styleKorean);
+    text2.position.set(app.screen.width / 2, 20);
     app.stage.addChild( text2 );
 
     // Create a rectangle
@@ -154,7 +160,7 @@ import { initDevtools } from '@pixi/devtools';
     }
     
     // Load an image and create a sprite
-    const texture = await Assets.load('/public/images/Renegade_Kick_1.png');
+    const texture = await Assets.load('/images/Renegade_Kick_1.png');
     const sprite1 = Sprite.from(texture);
     app.stage.addChild(sprite1);
     sprite1.position.set( 400, 300 );
