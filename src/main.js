@@ -181,6 +181,35 @@ import { initDevtools } from '@pixi/devtools';
 
     document.body.appendChild(app.canvas);
 
+    // Load bundle assets
+
+    Assets.addBundle('renegade_punches', {
+        renegade_punch_1: '/images/Renegade_Punch_1.png',
+        renegade_punch_2: '/images/Renegade_Punch_2.png'
+    });
+    
+    const renegadePunchesTextures = await Assets.loadBundle('renegade_punches');
+    const renegadePunchesSprite = Sprite.from( renegadePunchesTextures.renegade_punch_1 );
+
+    renegadePunchesSprite.scale.set( 2, 2 );
+    renegadePunchesSprite.position.set( app.screen.width - 200, app.screen.height - 200 );
+
+    app.stage.addChild( renegadePunchesSprite );
+
+    Assets.addBundle('renegade_pickups', {
+        renegade_pickup_1: '/images/Renegade_Pick_up.png',
+        renegade_pickup_2: '/images/Renegade_Pick_up_2.png'
+    });
+
+    const renegadePickupsTextures = await Assets.loadBundle('renegade_pickups');
+    const renegadePickupsSprite = Sprite.from( renegadePickupsTextures.renegade_pickup_1 );
+
+    renegadePickupsSprite.scale.set( 2, 2 );
+    renegadePickupsSprite.position.set( app.screen.width - 400, app.screen.height - 200 );
+
+    app.stage.addChild( renegadePickupsSprite );
+
+    // Create a container for fighters
     const fightersContainer = new Container();
     app.stage.addChild(fightersContainer);
 
